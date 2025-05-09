@@ -110,12 +110,12 @@ def get_numbers():
 
 # 保存数据到".\spiders\numbers.csv"文件中
 def save_numbers(numbers):
-    # 使用pandas保存数据
-    # 创建一个DataFrame对象
-    df = pd.DataFrame(numbers)
-    # 保存数据到".\spiders\numbers.csv"文件中
-    # 要求：设置自动宽度，文本全部靠右，中文不会乱码
-    df.to_csv(os.path.join(current_path, "spiders", "numbers.csv"), index=False, encoding="utf-8-sig", header=False)
+    # 打开文件
+    with open(os.path.join(current_path, "spiders", "numbers.csv"), "w", encoding="utf-8-sig", newline="") as f:
+        # 创建csv写入器
+        writer = csv.writer(f)
+        # 写入数据
+        writer.writerows(numbers)
 
 
 # 主函数
